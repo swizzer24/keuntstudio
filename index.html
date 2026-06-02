@@ -2203,6 +2203,8 @@
     </style>
   </head>
   <body>
+    <!-- AdaptiveImages.enableDebug(); // tampilkan badge di pojok kanan bawah
+    AdaptiveImages.getTier(); // → "high" / "medium" / "low" -->
     <script src="adaptive-image-loader.js"></script>
     <!-- ANNOUNCE BAR -->
     <div class="announce-bar">
@@ -2322,8 +2324,8 @@
             punya.
           </h1>
           <p class="hero-desc fade-in stagger-2">
-            Temukan gaya yang berbicara. Koleksi terbaru keunststudio.id —
-            fashion lokal dengan sentuhan minimalis yang tak lekang waktu.
+            Temukan gaya yang berbicara. Koleksi terbaru keunststudio — fashion
+            lokal dengan sentuhan minimalis yang tak lekang waktu.
           </p>
           <div class="hero-actions fade-in stagger-3">
             <a href="#" class="btn btn-primary" onclick="showPage('shop')"
@@ -2338,7 +2340,7 @@
           <img src="img/hero.png" alt="Hero fashion" />
           <!-- <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80" alt="Hero fashion"> -->
           <div class="hero-badge">
-            <div class="num">500+</div>
+            <div class="num"><span id="productCount"></span></div>
             <div class="label">Produk Premium</div>
           </div>
         </div>
@@ -2347,16 +2349,14 @@
       <!-- MARQUEE -->
       <div class="marquee-strip">
         <div class="marquee-inner">
-          <span>New Arrivals</span><span class="dot">Sustainable Fashion</span
-          ><span class="dot">Free Shipping 300K+</span
-          ><span class="dot">Exclusive Designs</span
-          ><span class="dot">Made in Indonesia</span
-          ><span class="dot">Premium Quality</span> <span>New Arrivals</span
-          ><span class="dot">Sustainable Fashion</span
-          ><span class="dot">Free Shipping 300K+</span
-          ><span class="dot">Exclusive Designs</span
-          ><span class="dot">Made in Indonesia</span
-          ><span class="dot">Premium Quality</span>
+          <span>New Arrivals</span><span class="dot">Sustainable Fashion</span>
+          <span class="dot">Exclusive Designs</span>
+          <span class="dot">Made in Indonesia</span>
+          <span class="dot">Premium Quality</span> <span>New Arrivals</span>
+          <span class="dot">Sustainable Fashion</span>
+          <span class="dot">Exclusive Designs</span>
+          <span class="dot">Made in Indonesia</span>
+          <span class="dot">Premium Quality</span>
         </div>
       </div>
 
@@ -2374,7 +2374,9 @@
               <img src="img/unisex.png" alt="Unisex" />
               <div class="cat-overlay">
                 <div class="cat-name">Unisex</div>
-                <div class="cat-count">124 produk</div>
+                <div class="cat-count">
+                  <span id="productCountUnisex"></span> produk
+                </div>
               </div>
             </div>
 
@@ -2385,7 +2387,9 @@
               <img src="img/hat.png" alt="Aksesori" />
               <div class="cat-overlay">
                 <div class="cat-name">Aksesori</div>
-                <div class="cat-count">67 produk</div>
+                <div class="cat-count">
+                  <span id="productCountAksesori"></span> produk
+                </div>
               </div>
             </div>
           </div>
@@ -2448,10 +2452,10 @@
                 src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&q=80"
                 alt="Bestseller"
               />
-              <div class="bs-image-overlay">
+              <!-- <div class="bs-image-overlay">
                 <div class="item">Best Seller</div>
                 <div class="price">Rp 299.000</div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -2698,15 +2702,15 @@
                 max-width: 440px;
               "
             >
-              keunststudio.id lahir dari kecintaan terhadap fashion minimalis
-              yang otentik. Kami percaya gaya terbaik bukan tentang mengikuti
-              tren, tapi tentang mengekspresikan diri dengan percaya diri.
+              keunststudio lahir dari kecintaan terhadap fashion minimalis yang
+              otentik. Kami percaya gaya terbaik bukan tentang mengikuti tren,
+              tapi tentang mengekspresikan diri dengan percaya diri.
             </p>
           </div>
           <div class="about-hero-img">
             <img
               src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80"
-              alt="About keunststudio.id"
+              alt="About keunststudio"
               style="width: 100%; height: 100%; object-fit: cover"
             />
           </div>
@@ -2786,7 +2790,7 @@
                   margin-bottom: 16px;
                 "
               >
-                keunststudio.id dimulai pada 2021 dari sebuah garasi kecil di
+                keunststudio dimulai pada 2021 dari sebuah garasi kecil di
                 Bandung. Apa yang dimulai sebagai proyek sampingan kini telah
                 berkembang menjadi brand fashion yang dipercaya lebih dari
                 12.000 pelanggan di seluruh Indonesia.
@@ -2844,10 +2848,10 @@
                 Email
               </h3>
               <p style="font-size: 13px; color: var(--gray-600)">
-                hello@keunststudio.id
+                hello@keunststudio
               </p>
               <p style="font-size: 13px; color: var(--gray-600)">
-                support@keunststudio.id
+                support@keunststudio
               </p>
             </div>
             <div style="padding: 32px; background: var(--gray-100)">
@@ -2856,7 +2860,7 @@
                 WhatsApp & Chat
               </h3>
               <p style="font-size: 13px; color: var(--gray-600)">
-                +62 811-2345-6789
+                +62 000-0000-0000
               </p>
               <p style="font-size: 13px; color: var(--gray-600)">
                 Senin–Jumat, 09.00–18.00 WIB
@@ -2944,8 +2948,8 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <a href="#" class="logo" onclick="showPage('home')"
-              >keunststudio<span style="opacity: 0.5; font-style: italic"
-                >.id</span
+              >keunst<span style="opacity: 0.5; font-style: italic"
+                >studio</span
               ></a
             >
             <p class="footer-tagline">
@@ -2996,7 +3000,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <span>© 2025 keunststudio.id — All rights reserved</span>
+          <span>© 2025 keunststudio — All rights reserved</span>
           <span>Dibuat dengan ❤ di Indonesia</span>
         </div>
       </div>
@@ -3134,8 +3138,8 @@
       <div class="checkout-panel">
         <div class="checkout-header">
           <a href="#" class="logo"
-            >keunststudio<span style="opacity: 0.5; font-style: italic"
-              >.id</span
+            >keunst<span style="opacity: 0.5; font-style: italic"
+              >studio</span
             ></a
           >
           <button class="checkout-close" onclick="closeCheckout()">✕</button>
@@ -3270,7 +3274,7 @@
         <button class="auth-close" onclick="closeAuth()">✕</button>
         <div class="auth-logo">
           keunststudio<span style="font-style: italic; color: var(--gray-400)"
-            >.id</span
+            >studio</span
           >
         </div>
         <p class="auth-sub">
@@ -3434,7 +3438,7 @@
           brand: "keunststudio",
           category: "Unisex",
           price: 0,
-          originalPrice: 699000,
+          originalPrice: null,
           badge: "sale",
           rating: 4.8,
           reviews: 56,
@@ -3466,42 +3470,6 @@
           weight: "400 gsm",
           bestseller: true,
         },
-        {
-          id: 6,
-          name: "Hoodie Premium Fleece",
-          brand: "keunststudio",
-          category: "Unisex",
-          price: 0,
-          originalPrice: 499000,
-          badge: "sale",
-          rating: 4.8,
-          reviews: 98,
-          colors: ["#6B7280", "#0a0a0a", "#1E3A5F"],
-          sizes: ["S", "M", "L", "XL", "XXL"],
-          img: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=600&q=80",
-          /*desc: "Hoodie premium dari bahan fleece tebal yang hangat dan nyaman. Desain minimalis dengan detail yang thoughtful. Tersedia dalam pilihan warna netral.",*/
-          material: "80% Cotton 20% Polyester Fleece",
-          weight: "350 gsm",
-          bestseller: false,
-        },
-        {
-          id: 7,
-          name: "Mini Crossbody Bag",
-          brand: "keunststudio",
-          category: "Aksesori",
-          price: 0,
-          originalPrice: null,
-          badge: "new",
-          rating: 4.7,
-          reviews: 67,
-          colors: ["#92400E", "#0a0a0a", "#6B7280"],
-          sizes: [],
-          img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80",
-          /*desc: "Tas crossbody mini dengan desain yang compact namun fungsional. Terbuat dari bahan vegan leather berkualitas tinggi yang tahan lama.",*/
-          material: "Vegan Leather Premium",
-          weight: "250 gsm",
-          bestseller: false,
-        },
       ];
 
       const faqData = [
@@ -3523,13 +3491,25 @@
         },
         {
           q: "Apakah ada program loyalitas atau reward point?",
-          a: "Ya! Setiap pembelian akan memberikan poin yang bisa ditukarkan dengan diskon. Bergabunglah dengan keunststudio.id Community untuk mendapatkan early access ke koleksi baru dan penawaran eksklusif.",
+          a: "Ya! Setiap pembelian akan memberikan poin yang bisa ditukarkan dengan diskon. Bergabunglah dengan keunststudio Community untuk mendapatkan early access ke koleksi baru dan penawaran eksklusif.",
         },
         {
           q: "Metode pembayaran apa saja yang tersedia?",
           a: "Kami menerima transfer bank (BCA, Mandiri, BNI, BRI), e-wallet (OVO, GoPay, DANA, ShopeePay), kartu kredit/debit, dan COD untuk wilayah tertentu.",
         },
       ];
+
+      const productCountUnisex = products.filter(
+        (p) => p.category == "Unisex",
+      ).length;
+      const productCountAksesori = products.filter(
+        (p) => p.category == "Aksesori",
+      ).length;
+      document.getElementById("productCountUnisex").innerText =
+        productCountUnisex;
+      document.getElementById("productCountAksesori").innerText =
+        productCountAksesori;
+      document.getElementById("productCount").innerText = products.length;
 
       // ════ STATE ════
       let cart = [];
@@ -4124,7 +4104,7 @@
         drawer.id = "mobileNavDrawer";
         drawer.style.cssText =
           "position:fixed;inset:0;background:var(--white);z-index:200;padding:24px;display:flex;flex-direction:column;";
-        drawer.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;"><a href="#" class="logo" style="font-family:var(--font-serif);font-size:22px;text-decoration:none;color:var(--black);">keunststudio<em style="font-style:italic;color:var(--gray-400);">.id</em></a><button onclick="document.getElementById('mobileNavDrawer').remove()" style="background:none;border:none;font-size:24px;cursor:pointer;">✕</button></div><nav style="display:flex;flex-direction:column;gap:4px;">${["Home", "Shop", "About", "Contact", "FAQ"].map((p) => `<a href="#" onclick="document.getElementById('mobileNavDrawer').remove(); showPage('${p.toLowerCase()}')" style="display:block;padding:16px 0;font-size:24px;font-weight:300;text-decoration:none;color:var(--black);border-bottom:1px solid var(--gray-100);">${p}</a>`).join("")}</nav>`;
+        drawer.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;"><a href="#" class="logo" style="font-family:var(--font-serif);font-size:22px;text-decoration:none;color:var(--black);">keunst<em style="font-style:italic;color:var(--gray-400);">studio</em></a><button onclick="document.getElementById('mobileNavDrawer').remove()" style="background:none;border:none;font-size:24px;cursor:pointer;">✕</button></div><nav style="display:flex;flex-direction:column;gap:4px;">${["Home", "Shop", "About", "Contact", "FAQ"].map((p) => `<a href="#" onclick="document.getElementById('mobileNavDrawer').remove(); showPage('${p.toLowerCase()}')" style="display:block;padding:16px 0;font-size:24px;font-weight:300;text-decoration:none;color:var(--black);border-bottom:1px solid var(--gray-100);">${p}</a>`).join("")}</nav>`;
         document.body.appendChild(drawer);
       }
 
