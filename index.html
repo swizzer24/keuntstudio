@@ -377,6 +377,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: 65% center; /* Crop dari kanan (fokus ke kiri) */
         transform: scale(1.05);
         transition: transform 6s ease;
       }
@@ -469,15 +470,16 @@
       }
 
       /* ── CATEGORIES ── */
+      /* ── CATEGORIES ── */
       .categories {
         padding: 80px 0;
       }
       .cat-grid {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);  /* Desktop: 2 kolom sejajar */
         gap: 16px;
-        max-width: 500px;  /* opsional: batasi lebar */
-        margin: 0 auto;    /* opsional: tengahkan */
+        max-width: 800px;
+        margin: 0 auto;
       }
       .cat-card {
         position: relative;
@@ -491,7 +493,7 @@
         height: 100%;
         object-fit: cover;
         transition: transform 0.6s ease;
-        image-rendering:optimizeSpeed;
+        image-rendering: optimizeSpeed;
       }
       .cat-card:hover img {
         transform: scale(1.06);
@@ -2332,7 +2334,7 @@
           </div>
         </div>
         <div class="hero-image-wrap">
-          <img src="hero.png" alt="Hero fashion" />
+          <img src="img/hero.png" alt="Hero fashion" />
           <!-- <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80" alt="Hero fashion"> -->
           <div class="hero-badge">
             <div class="num">500+</div>
@@ -2368,7 +2370,7 @@
           </div>
           <div class="cat-grid">
             <div class="cat-card fade-in" onclick="filterCategory('Unisex')">
-              <img src="unisex.png" alt="Unisex" />
+              <img src="img/unisex.png" alt="Unisex" />
               <div class="cat-overlay">
                 <div class="cat-name">Unisex</div>
                 <div class="cat-count">124 produk</div>
@@ -2379,7 +2381,7 @@
               class="cat-card fade-in stagger-2"
               onclick="filterCategory('Aksesori')"
             >
-              <img src="hat.png" alt="Aksesori" />
+              <img src="img/hat.png" alt="Aksesori" />
               <div class="cat-overlay">
                 <div class="cat-name">Aksesori</div>
                 <div class="cat-count">67 produk</div>
@@ -3381,7 +3383,7 @@
           colors: ["#ffffff"],
           sizes: ["S", "M", "L", "XL"],
           <!-- img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80", -->
-          img: "tshirt1.png",
+          img: "img/tshirt1.png",
           /*desc: "Kaos premium oversized dari bahan katun combed 30s yang lembut dan breathable. Cocok untuk aktivitas sehari-hari dengan tampilan yang tetap stylish.",*/
           material: "100% Katun Combed 30s",
           weight: "180 gsm",
@@ -3400,7 +3402,7 @@
           colors: ["#ffffff"],
           sizes: ["S", "M", "L", "XL", "XXL"],
           <!-- img: "https://images.unsplash.com/photo-1604695573706-53170668f6a6?w=600&q=80", -->
-          img: "tshirt2.png",
+          img: "img/tshirt2.png",
           /*desc: "Kemeja linen premium dengan potongan relaxed fit. Bahan linen alami yang sejuk dan breathable, perfect untuk cuaca tropis Indonesia.",*/
           material: "100% Linen Premium",
           weight: "150 gsm",
@@ -3419,7 +3421,7 @@
           colors: ["#ffffff"],
           sizes: ["XS", "S", "M", "L", "XL"],
           <!-- img: "https://images.unsplash.com/photo-1594938298603-c8148c4b4057?w=600&q=80", -->
-          img: "tshirt3.png",
+          img: "img/tshirt3.png",
           /*desc: "Celana wide leg dengan siluet modern dan elegan. Cocok dipadukan dengan berbagai atasan untuk tampilan profesional maupun kasual.",*/
           material: "Polyester Rayon Blend",
           weight: "220 gsm",
@@ -3438,7 +3440,7 @@
           colors: ["#0a0a0a", "#1E3A5F"],
           sizes: ["XS", "S", "M", "L", "XL"],
           img: "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&q=80",
-          img: "tshirt4.png",
+          img: "img/tshirt4.png",
           /*desc: "Jaket crop dengan struktur yang tegas namun tetap feminine. Bahan premium dengan jahitan yang rapi dan tahan lama.",*/
           material: "Wool Blend",
           weight: "300 gsm",
@@ -3457,7 +3459,7 @@
           colors: ["#ffffff", "#0a0a0a", "#92400E"],
           sizes: [],
           <!-- img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80", -->
-          img: "hat.png",
+          img: "img/hat.png",
           /*desc: "Tote bag canvas yang kuat dan serbaguna. Kapasitas besar dengan bahan kanvas tebal yang tahan lama. Tersedia dalam berbagai warna.",*/
           material: "Canvas 12 oz",
           weight: "400 gsm",
