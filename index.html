@@ -2085,8 +2085,9 @@
           grid-template-columns: 1fr;
         }
         .modal-img-col {
-          min-height: 60vw;
-          max-height: 300px;
+          aspect-ratio: 1 / 1;
+          min-height: auto;
+          max-height: none;
         }
 
         .checkout-body {
@@ -2203,9 +2204,6 @@
     </style>
   </head>
   <body>
-    <!-- AdaptiveImages.enableDebug(); // tampilkan badge di pojok kanan bawah
-    AdaptiveImages.getTier(); // → "high" / "medium" / "low" -->
-    <script src="adaptive-image-loader.js"></script>
     <!-- ANNOUNCE BAR -->
     <div class="announce-bar">
       ✦ Designed to Stand Out <span>·</span> Premium Quality <span>·</span> Free
