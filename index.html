@@ -947,6 +947,17 @@
         font-weight: 500;
       }
 
+      .panduan {
+        font-weight: 500;
+        margin-bottom: 12px;
+        display: flex;
+      }
+      .panduan span{
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
       .option-label {
         font-size: 11px;
         letter-spacing: 0.1em;
@@ -981,7 +992,6 @@
       .size-opts {
         display: flex;
         gap: 8px;
-        margin-bottom: 28px;
         flex-wrap: wrap;
       }
       .size-opt {
@@ -1010,6 +1020,30 @@
         opacity: 0.3;
         cursor: not-allowed;
         text-decoration: line-through;
+      }
+      .size-crt {
+        display: flex;
+        margin-top: 8px;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .size-itm {
+        min-width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--gray-200);
+        font-size: 13px;
+        cursor: pointer;
+        transition: var(--transition);
+        background: none;
+        font-family: var(--font-sans);
+        padding: 0 12px;
+      }
+      .size-title {
+        background: var(--black);
+        color: var(--white);
       }
 
       .modal-add-row {
@@ -2205,6 +2239,160 @@
         transition-delay: 0.4s;
       }
     </style>
+    <style>
+      /* ========== FLOATING SWITCH MINIMALIS ========== */
+      .quality-switch {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(8px);
+        padding: 8px 18px 8px 20px;
+        border-radius: 40px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+
+      .quality-switch:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-1px);
+      }
+
+      /* Label SD / HD */
+      .quality-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #9ca3af;
+        transition: color 0.2s;
+      }
+
+      .quality-label.active {
+        color: #1a1a1a;
+        font-weight: 600;
+      }
+
+      /* Toggle Switch */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 44px;
+        height: 24px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #e5e7eb;
+        transition: 0.2s ease;
+        border-radius: 24px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.2s ease;
+        border-radius: 50%;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      input:checked + .slider {
+        background-color: #1a1a1a;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(20px);
+      }
+
+      /* Icon */
+      .quality-icon {
+        font-size: 13px;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+      }
+
+      .quality-switch[data-quality="hd"] .quality-icon {
+        opacity: 1;
+      }
+
+      /* Tooltip */
+      .quality-switch .tooltip {
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        margin-bottom: 12px;
+        background: #1a1a1a;
+        color: white;
+        font-size: 10px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+        font-weight: 400;
+      }
+
+      .quality-switch:hover .tooltip {
+        opacity: 1;
+      }
+
+      .quality-switch .tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        right: 20px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #1a1a1a transparent transparent transparent;
+      }
+
+      /* Responsive */
+      @media (max-width: 640px) {
+        .quality-switch {
+          bottom: 16px;
+          right: 16px;
+          padding: 6px 14px 6px 16px;
+        }
+        .switch {
+          width: 38px;
+          height: 20px;
+        }
+        .slider:before {
+          height: 14px;
+          width: 14px;
+        }
+        input:checked + .slider:before {
+          transform: translateX(18px);
+        }
+        .quality-label {
+          font-size: 10px;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- ANNOUNCE BAR -->
@@ -2216,6 +2404,72 @@
       ✦ Gratis Ongkir untuk pembelian di atas Rp 299.000 <span>·</span> Koleksi
       Terbaru Sudah Tersedia <span>·</span> Flash Sale Setiap Rabu 20.00 WIB ✦
     </div> -->
+
+    <!-- FLOATING SWITCH -->
+    <div class="quality-switch" data-quality="sd">
+      <span class="quality-icon">🖼</span>
+      <span class="quality-label active" id="labelSD">SD</span>
+      <label class="switch">
+        <input type="checkbox" id="qualityToggle" />
+        <span class="slider"></span>
+      </label>
+      <span class="quality-label" id="labelHD">HD</span>
+      <span class="tooltip">Ganti kualitas gambar</span>
+    </div>
+    <script>
+      // Fungsi untuk mengubah gambar dari folder tertentu
+      function switchImageQuality(isHD) {
+        const images = document.querySelectorAll("img");
+
+        images.forEach((img) => {
+          let currentSrc = img.src;
+
+          if (isHD) {
+            // img/image.png → img/ori/image.png
+            if (!currentSrc.includes("/ori/")) {
+              const lastSlash = currentSrc.lastIndexOf("/");
+              const path = currentSrc.substring(0, lastSlash);
+              const fileName = currentSrc.substring(lastSlash + 1);
+              img.src = `${path}/ori/${fileName}`;
+            }
+          } else {
+            // img/ori/image.png → img/image.png
+            if (currentSrc.includes("/ori/")) {
+              img.src = currentSrc.replace("/ori/", "/");
+            }
+          }
+        });
+      }
+      // Inisialisasi switch
+      const toggle = document.getElementById("qualityToggle");
+      const container = document.querySelector(".quality-switch");
+      const labelSD = document.getElementById("labelSD");
+      const labelHD = document.getElementById("labelHD");
+
+      function updateQuality() {
+        const isHD = toggle.checked;
+        container.setAttribute("data-quality", isHD ? "hd" : "sd");
+
+        if (isHD) {
+          labelSD.classList.remove("active");
+          labelHD.classList.add("active");
+        } else {
+          labelSD.classList.add("active");
+          labelHD.classList.remove("active");
+        }
+
+        switchImageQuality(isHD);
+        localStorage.setItem("imageQuality", isHD ? "hd" : "sd");
+      }
+
+      toggle.addEventListener("change", updateQuality);
+
+      // Load preferensi
+      if (localStorage.getItem("imageQuality") === "hd") {
+        toggle.checked = true;
+        updateQuality();
+      }
+    </script>
 
     <!-- HEADER -->
     <header class="header">
@@ -2981,7 +3235,7 @@
               <li>
                 <a href="#" onclick="showPage('contact')">Hubungi Kami</a>
               </li>
-              <li><a href="#">Panduan Ukuran</a></li>
+              <li><a href="#" onclick="openSizeChart()">Panduan Ukuran</a></li>
               <li><a href="#">Pengembalian</a></li>
               <li><a href="#">Lacak Pesanan</a></li>
             </ul>
@@ -3084,21 +3338,63 @@
           <div class="option-label">Warna</div>
           <div class="color-opts" id="modalColors"></div>
 
-          <div class="option-label">
-            Ukuran
+          <div class="panduan" onclick="panduan()">
+            <span>Ukuran</span>
             <span
               style="
                 font-size: 11px;
                 color: var(--gray-400);
                 cursor: pointer;
-                font-weight: 400;
+                margin-left: auto;
+                margin-right: 10px;
               "
-              >Panduan Ukuran →</span
-            >
+              id="panduanBtn"
+              >Panduan Ukuran
+            </span>
+            <span id="panduanIcon">→</span>
           </div>
+
           <div class="size-opts" id="modalSizes"></div>
 
-          <div class="modal-add-row">
+          <div class="panduan" id="panduan" style="display: none">
+            <div class="size-crt">
+              <button class="size-itm size-S">52</button>
+              <button class="size-itm size-M">54</button>
+              <button class="size-itm size-L">56</button>
+              <button class="size-itm size-XL">58</button>
+              <button class="size-itm size-XXL">60</button>
+              <button class="size-itm size-title" id="size-title">A</button>
+            </div>
+            <div class="size-crt">
+              <button class="size-itm size-S">62</button>
+              <button class="size-itm size-M">64</button>
+              <button class="size-itm size-L">66</button>
+              <button class="size-itm size-XL">68</button>
+              <button class="size-itm size-XXL">70</button>
+              <button class="size-itm size-title" id="size-title">B</button>
+            </div>
+            <div class="size-crt">
+              <button class="size-itm size-S">21</button>
+              <button class="size-itm size-M">22</button>
+              <button class="size-itm size-L">23</button>
+              <button class="size-itm size-XL">23</button>
+              <button class="size-itm size-XXL">23</button>
+              <button class="size-itm size-title" id="size-title">C</button>
+            </div>
+            <div class="size-crt">
+              <button class="size-itm size-S">48</button>
+              <button class="size-itm size-M">50</button>
+              <button class="size-itm size-L">52</button>
+              <button class="size-itm size-XL">54</button>
+              <button class="size-itm size-XXL">55</button>
+              <button class="size-itm size-title" id="size-title">D</button>
+            </div>
+
+            <img src="tshirt_temp.svg" alt="" />
+            <!-- <img src="c.svg" alt="" /> -->
+          </div>
+
+          <div class="modal-add-row" style="margin-top: 28px">
             <div class="qty-control">
               <button class="qty-btn" onclick="changeQty(-1)">−</button>
               <div class="qty-val" id="qtyVal">1</div>
@@ -3119,7 +3415,6 @@
         </div>
       </div>
     </div>
-    <!-- ════ SIZE CHART ════ -->
 
     <!-- ════ CART SIDEBAR ════ -->
     <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
@@ -3678,10 +3973,29 @@
           ? p.sizes
               .map(
                 (s) =>
-                  `<button class="size-opt" onclick="selectSize(this,'${s}')">${s}</button>`,
+                  `<button class="size-opt" onclick="selectSize(this,'${s}')" id="size-${s}">${s}</button>`,
               )
-              .join("")
+              .join("") +
+            `<button class="size-itm size-title" id="size-title" style="display:none;">size</button>`
           : '<p style="font-size:13px; color:var(--gray-400);">One size</p>';
+
+        console.log(p.sizes);
+        document.querySelectorAll(".size-crt").forEach((div) => {
+          div.querySelectorAll(".size-itm").forEach((el) => {
+            const sizeClass = [...el.classList].find(
+              (cls) =>
+                cls.startsWith("size-") &&
+                cls !== "size-itm" &&
+                cls !== "size-title",
+            );
+
+            if (!sizeClass) return;
+
+            const sz = sizeClass.replace("size-", "");
+
+            el.style.display = p.sizes.includes(sz) ? "" : "none";
+          });
+        });
 
         document.getElementById("modalDesc").textContent = p.desc;
         document.getElementById("modalMeta").innerHTML = `
@@ -3740,6 +4054,69 @@
 
         document.getElementById("productModal").classList.add("active");
         document.body.style.overflow = "hidden";
+
+        waitForSizeButtons();
+      }
+      let isHover = false;
+
+      // Tunggu modal terbuka
+      function waitForSizeButtons() {
+        let checkCount = 0;
+        const maxChecks = 50; // Maksimal 5 detik (50 x 100ms)
+
+        const interval = setInterval(() => {
+          checkCount++;
+
+          const sizeBtns = [
+            document.getElementById("size-XS"),
+            document.getElementById("size-S"),
+            document.getElementById("size-M"),
+            document.getElementById("size-L"),
+            document.getElementById("size-XL"),
+            document.getElementById("size-XXL"),
+          ].filter((btn) => btn !== null);
+
+          if (sizeBtns.length > 0) {
+            sizeBtns.forEach((item) => {
+              if (!item.hasAttribute("data-hover-listener")) {
+                const buttonId = item.id;
+                const buttonText = item.textContent || item.innerText;
+
+                item.addEventListener("mouseenter", () => {
+                  isHover = true;
+                  sizeCrt(buttonId, isHover);
+                });
+
+                item.addEventListener("mouseleave", () => {
+                  isHover = false;
+                  sizeCrt(buttonId, isHover);
+                });
+
+                item.setAttribute("data-hover-listener", "true");
+                console.log(`   📌 Listener terpasang untuk: ${buttonId}`);
+              }
+            });
+
+            clearInterval(interval);
+          } else if (checkCount >= maxChecks) {
+            console.log("❌ Tombol ukuran tidak ditemukan setelah 5 detik");
+            console.log("   Cek apakah modal sudah terbuka?");
+            console.log("   Cek apakah ID tombol sudah benar?");
+            clearInterval(interval);
+          }
+        }, 100);
+      }
+      function sizeCrt(id, hover) {
+        const colBtn = document.querySelectorAll("." + id);
+        if (hover === true) {
+          colBtn.forEach((btn) => {
+            btn.style.borderColor = "var(--black)";
+          });
+        } else {
+          colBtn.forEach((btn) => {
+            btn.style.borderColor = "var(--gray-200)";
+          });
+        }
       }
       function closeProductModal() {
         document.getElementById("productModal").classList.remove("active");
@@ -3811,6 +4188,27 @@
       function updateCartBadge() {
         const total = cart.reduce((s, c) => s + c.qty, 0);
         document.getElementById("cartBadge").textContent = total;
+      }
+
+      // ════ PANDUAN ════
+      function panduan() {
+        var div = document.getElementById("panduan");
+        var title = document.getElementById("size-title");
+        var icon = document.getElementById("panduanIcon");
+        var btn = document.getElementById("panduanBtn");
+        if (div.style.display === "block") {
+          div.style.display = "none";
+          title.style.display = "none";
+          icon.style.color = "var(--gray-400)";
+          btn.style.color = "var(--gray-400)";
+          icon.innerText = "→";
+        } else {
+          div.style.display = "block";
+          title.style.display = "block";
+          icon.style.color = "red";
+          btn.style.color = "black";
+          icon.innerText = "✕";
+        }
       }
 
       // ════ CART ════
