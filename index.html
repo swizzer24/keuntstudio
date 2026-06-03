@@ -2430,7 +2430,7 @@
               const lastSlash = currentSrc.lastIndexOf("/");
               const path = currentSrc.substring(0, lastSlash);
               const fileName = currentSrc.substring(lastSlash + 1);
-              img.src = `img/ori/${fileName}`;
+              img.src = `${path}/ori/${fileName}`;
             }
           } else {
             // img/ori/image.png → img/image.png
